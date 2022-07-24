@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+      <variable name="detaySayfaToolbarBaslik" type="String" />
+        <variable name="yemekNesnesi" type="com.example.yemekuygulamasi.data.entity.Yemekler" />
+        <variable name="detayFragment" type="com.example.yemekuygulamasi.ui.fragment.DetayFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.DetayFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarDetaySayfa"
+            app:title="@{detaySayfaToolbarBaslik}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewDetayYemekResim"
+            android:layout_width="335dp"
+            android:layout_height="269dp"
+            android:layout_marginTop="32dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDetaySayfa"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textViewDetayYemekAdi"
+            android:text="@{yemekNesnesi.yemek_adi}"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewDetayYemekResim" />
+
+        <TextView
+            android:id="@+id/textViewDetayYemekFiyat"
+            android:text="@{yemekNesnesi.yemek_fiyat}"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetayYemekAdi" />
+
+        <TextView
+            android:id="@+id/textViewDetayAdet"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:hint="adet"
+            android:textColorHint="@color/material_dynamic_neutral40"
+            android:text=
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonAzalt"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetayYemekFiyat" />
+
+        <ImageButton
+            android:id="@+id/imageButtonAzalt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/azalt_resim"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonArttir"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textViewDetayAdet"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetayYemekFiyat" />
+
+        <ImageButton
+            android:id="@+id/imageButtonArttir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/arttir_resim"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageButtonAzalt"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDetayYemekFiyat" />
+
+        <Button
+            android:id="@+id/buttonSepeteEkle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="24dp"
+            android:text="SEPETE EKLE"
+            android:onClick="@{()-> detayFragment.buttonSepeteEkleTikla(yemekNesnesi.yemek_id,yemekNesnesi.yemek_resim_adi,textViewDetayYemekAdi.getText().toString(),
+            textViewDetayYemekFiyat.getText().toString())}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextKullaniciAdi" />
+
+        <EditText
+            android:id="@+id/editTextTextKullaniciAdi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="kullanici_adi"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButtonAzalt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

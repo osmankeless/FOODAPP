@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="sepetSayfaToolbarBaslik" type="String" />
+        <variable name="sepetSayfaFragment" type="com.example.yemekuygulamasi.ui.fragment.SepetSayfaFragment" />
+        <variable name="sepetAdapter" type="com.example.yemekuygulamasi.ui.adapter.SepetAdapter" />
+        <variable name="sepetyemekNesnesi" type="com.example.yemekuygulamasi.data.entity.SepetYemekler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.SepetSayfaFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarSepetSayfa"
+            app:title="@{sepetSayfaToolbarBaslik}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonSepetOnayla"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Siparişi Onayla"
+            android:onClick="@{()->sepetSayfaFragment.buttonSiparisOnayla(sepetyemekNesnesi.sepet_yemek_id,sepetyemekNesnesi.yemek_adi,sepetyemekNesnesi.yemek_resim_adi,sepetyemekNesnesi.yemek_fiyat,sepetyemekNesnesi.yemek_siparis_adet,sepetyemekNesnesi.kullanici_adi)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSepet"
+            android:layout_width="409dp"
+            android:layout_height="552dp"
+            android:adapter="@{sepetAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/buttonSepetOnayla"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarSepetSayfa" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
